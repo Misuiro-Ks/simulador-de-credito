@@ -1,10 +1,13 @@
 //AQUI EL JAVASCRIPT PARA MANIPULAR EL HTML
 
 function calcular() {
-    
+    //DATOS FINANCIEROS
     let ingresos = recuperarFloat("txtIngresos");
     let egresos = recuperarFloat("txtEgresos");
 
     let disponible = calcularDisponible(ingresos, egresos);
     document.getElementById("spnDisponible").textContent = "USD " + disponible.toFixed(2);
+
+    let capacidadPago = calcularCapacidadPago(disponible);
+    document.getElementById("spnCapacidadPago").textContent = "USD " + capacidadPago.toFixed(2);
 }
