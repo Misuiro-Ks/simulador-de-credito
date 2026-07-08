@@ -36,3 +36,11 @@ function calcularCuotaMensual(total, plazoAños) {
 
     return cuotaMensual;
 }
+
+function aprobarCredito(capacidadPago, cuotaMensual) {
+    if (capacidadPago > cuotaMensual) {
+        return true;
+    } else {
+        return false;
+    }
+}
