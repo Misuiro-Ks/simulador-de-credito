@@ -11,6 +11,7 @@ function calcular() {
     let capacidadPago = calcularCapacidadPago(disponible);
     document.getElementById("spnCapacidadPago").textContent = "USD " + capacidadPago.toFixed(2);
 
+    //SOLICITUD DE CREDITO
     let monto = recuperarFloat("txtMonto");
     let plazoAños = recuperarFloat("txtPlazo");
     let tasa = recuperarFloat("txtTasaInteres");
@@ -20,5 +21,8 @@ function calcular() {
 
      let total = calcularTotalPagar(monto, interes);
     document.getElementById("spnTotalPrestamo").textContent = total.toFixed(2);
+
+    let cuotaMensual = calcularCuotaMensual(total, plazoAños);
+    document.getElementById("spnCuotaMensual").textContent = cuotaMensual.toFixed(2);
 
 }
