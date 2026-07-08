@@ -45,3 +45,44 @@ function aprobarCredito(capacidadPago, cuotaMensual) {
     }
 }
 
+function montoEnRango(monto) {
+    const MONTO_MINIMO = 5000;
+    const MONTO_MAXIMO = 20000;
+
+    if (monto >= MONTO_MINIMO && monto <= MONTO_MAXIMO) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function plazoEsValido(plazoAños) {
+    const PLAZO_MINIMO = 1;
+    const PLAZO_MAXIMO = 5;
+
+    if (plazoAños >= PLAZO_MINIMO && plazoAños <= PLAZO_MAXIMO) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function tasaEnRango(tasa) {
+    const TASA_MINIMA = 1;
+    const TASA_MAXIMA = 30;
+
+    if (tasa >= TASA_MINIMA && tasa <= TASA_MAXIMA) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function capacidadPagoPositiva(ingresos, egresos) {
+    if (ingresos > egresos) {
+        return true;
+    } else {
+        return false;
+    }
+}
+

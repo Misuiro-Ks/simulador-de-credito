@@ -1,0 +1,26 @@
+Promt1.
+
+Quiero validar inputs en JavaScript. 
+Regalas: 
+-Mostrar mensaje debajo de cada input (no usar alert) 
+-El mensaje debe ser en color rojo y en cursiva 
+-Validaciones:   
+-solo numero   
+-créditos de maximo USD20000  y minimos de USD5000
+-no puede estar vacío 
+Condiciones técnicas: 
+-usar los mismo IDs existentes 
+-no modificar IDs existentes 
+-mostrar errores en un elemento debajo del input
+
+todas estas validaciones se realizaran solo una vez se presione el boton calcular credito 
+y mostrara los errores que te comento debajo de cada input
+
+Promt2.
+
+adicional realiza una validación para que el plazo sea mayor a 0 
+e infórmame todos los codigos en que cambio o se modifico para validarlo yo (HTML, JS, CSS)
+
+Promt2.
+
+Añade mas validaciones bancarias y que la validacion se mantenga solo al presionar calcular

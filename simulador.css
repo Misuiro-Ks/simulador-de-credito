@@ -292,3 +292,12 @@ button:active {
         max-width: 520px;
     }
 }
+
+.error-msg {
+    display: block;
+    color: #D32F2F;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 14px;
+}

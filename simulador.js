@@ -1,6 +1,9 @@
 //AQUI EL JAVASCRIPT PARA MANIPULAR EL HTML
 
 function calcular() {
+    if (!validarFormulario()) {
+        return;
+    }
     //DATOS FINANCIEROS
     let ingresos = recuperarFloat("txtIngresos");
     let egresos = recuperarFloat("txtEgresos");
@@ -37,6 +40,77 @@ function calcular() {
 
 }
 
+function validarFormulario() {
+    let formularioValido = true;
+
+    let campos = [
+        { input: "txtIngresos", error: "errIngresos" },
+        { input: "txtEgresos", error: "errEgresos" },
+        { input: "txtMonto", error: "errMonto" },
+        { input: "txtPlazo", error: "errPlazo" },
+        { input: "txtTasaInteres", error: "errTasaInteres" }
+    ];
+
+    for (let i = 0; i < campos.length; i++) {
+        let valorTexto = recuperarTexto(campos[i].input);
+        let valorSinFormato = quitarComas(valorTexto);
+        limpiarError(campos[i].error);
+
+        if (estaVacio(valorSinFormato)) {
+            mostrarError(campos[i].error, "Este campo no puede estar vacío");
+            formularioValido = false;
+        } else if (!esNumero(valorSinFormato)) {
+            mostrarError(campos[i].error, "Solo se permiten números");
+            formularioValido = false;
+        }
+    }
+
+    // Validación especial: monto (rango 5000 - 20000)
+    let valorMontoTexto = quitarComas(recuperarTexto("txtMonto"));
+    if (!estaVacio(valorMontoTexto) && esNumero(valorMontoTexto)) {
+        let monto = recuperarFloat("txtMonto");
+        if (!montoEnRango(monto)) {
+            mostrarError("errMonto", "El monto debe estar entre USD 5000 y USD 20000");
+            formularioValido = false;
+        }
+    }
+
+    // Validación especial: plazo (entre 1 y 5 años)
+    let valorPlazoTexto = quitarComas(recuperarTexto("txtPlazo"));
+    if (!estaVacio(valorPlazoTexto) && esNumero(valorPlazoTexto)) {
+        let plazo = recuperarFloat("txtPlazo");
+        if (!plazoEsValido(plazo)) {
+            mostrarError("errPlazo", "El plazo debe estar entre 1 y 5 años");
+            formularioValido = false;
+        }
+    }
+
+    // Validación especial: tasa de interés (entre 1% y 30%)
+    let valorTasaTexto = quitarComas(recuperarTexto("txtTasaInteres"));
+    if (!estaVacio(valorTasaTexto) && esNumero(valorTasaTexto)) {
+        let tasa = recuperarFloat("txtTasaInteres");
+        if (!tasaEnRango(tasa)) {
+            mostrarError("errTasaInteres", "La tasa debe estar entre 1% y 30%");
+            formularioValido = false;
+        }
+    }
+
+    // Validación especial: ingresos deben ser mayores a egresos
+    let valorIngresosTexto = quitarComas(recuperarTexto("txtIngresos"));
+    let valorEgresosTexto = quitarComas(recuperarTexto("txtEgresos"));
+    if (!estaVacio(valorIngresosTexto) && esNumero(valorIngresosTexto) &&
+        !estaVacio(valorEgresosTexto) && esNumero(valorEgresosTexto)) {
+        let ingresos = recuperarFloat("txtIngresos");
+        let egresos = recuperarFloat("txtEgresos");
+        if (!capacidadPagoPositiva(ingresos, egresos)) {
+            mostrarError("errEgresos", "Los ingresos deben ser mayores a los egresos");
+            formularioValido = false;
+        }
+    }
+
+    return formularioValido;
+}
+
 function reiniciar() {
     document.getElementById("txtIngresos").value = "";
     document.getElementById("txtEgresos").value = "";
@@ -50,4 +124,10 @@ function reiniciar() {
     document.getElementById("spnTotalPrestamo").textContent = "";
     document.getElementById("spnCuotaMensual").textContent = "";
     document.getElementById("spnEstadoCredito").textContent = "ANALIZANDO...";
+
+    limpiarError("errIngresos");
+    limpiarError("errEgresos");
+    limpiarError("errMonto");
+    limpiarError("errPlazo");
+    limpiarError("errTasaInteres");
 }

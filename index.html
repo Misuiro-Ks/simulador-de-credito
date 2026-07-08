@@ -1,82 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simulador de Crédito | Banco Pichincha</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="simulador.css">
-</head>
-<body>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="simulador.css" />
+  </head>
+  <body>
     <header class="bank-header">
-        <div class="bank-header__brand">
-            <div class="bank-logo" aria-label="Banco Pichincha">
-                <span class="bank-logo__mark">BP</span>
-                <span class="bank-logo__name">BANCO<br>PICHINCHA</span>
-            </div>
-            <span class="bank-header__tagline">Soluciones financieras a tu medida</span>
+      <div class="bank-header__brand">
+        <div class="bank-logo" aria-label="Banco Pichincha">
+          <span class="bank-logo__mark">BP</span>
+          <span class="bank-logo__name">BANCO<br />PICHINCHA</span>
         </div>
+        <span class="bank-header__tagline"
+          >Soluciones financieras a tu medida</span
+        >
+      </div>
     </header>
 
     <main class="container">
-        <div class="card">
-            <h1>Simulador de Crédito</h1>
-            <p class="subtitle">Calcula tu capacidad de pago y conoce el estado de tu solicitud</p>
+      <div class="card">
+        <h1>Simulador de Crédito</h1>
+        <p class="subtitle">
+          Calcula tu capacidad de pago y conoce el estado de tu solicitud
+        </p>
 
-            <section class="card__section">
-                <h2><span class="section-icon">1</span> Datos financieros</h2>
+        <section class="card__section">
+          <h2><span class="section-icon">1</span> Datos financieros</h2>
 
-                <label for="txtIngresos">Ingresos:</label>
-                <input type="text" id="txtIngresos" placeholder="Ej: 1200">
+          <label for="txtIngresos">Ingresos:</label>
+          <input type="text" id="txtIngresos" placeholder="Ej: 1200" oninput="formatearNumero(this.id)"/>
+          <span class="error-msg" id="errIngresos"></span>
 
-                <label for="txtEgresos">Egresos:</label>
-                <input type="text" id="txtEgresos" placeholder="Ej: 600">
+          <label for="txtEgresos">Egresos:</label>
+          <input type="text" id="txtEgresos" placeholder="Ej: 600" oninput="formatearNumero(this.id)"/>
+          <span class="error-msg" id="errEgresos"></span>
 
-                <div class="result-row">
-                    <p>Disponible: <span id="spnDisponible">--</span></p>
-                    <p>Capacidad de pago mensual: <span id="spnCapacidadPago">--</span></p>
-                </div>
-            </section>
+          <div class="result-row">
+            <p>Disponible: <span id="spnDisponible">--</span></p>
+            <p>
+              Capacidad de pago mensual: <span id="spnCapacidadPago">--</span>
+            </p>
+          </div>
+        </section>
 
-            <section class="card__section">
-                <h2><span class="section-icon">2</span> Solicitud de crédito</h2>
+        <section class="card__section">
+          <h2><span class="section-icon">2</span> Solicitud de crédito</h2>
 
-                <label for="txtMonto">Monto:</label>
-                <input type="text" id="txtMonto" placeholder="Ej: 5000">
+          <label for="txtMonto">Monto:</label>
+          <input type="text" id="txtMonto" placeholder="Ej: 5000" oninput="formatearNumero(this.id)"/>
+          <span class="error-msg" id="errMonto"></span>
 
-                <label for="txtPlazo">Plazo en años:</label>
-                <input type="text" id="txtPlazo" placeholder="Ej: 3">
 
-                <label for="txtTasaInteres">Tasa de interés:</label>
-                <input type="text" id="txtTasaInteres" placeholder="Ej: 12">
+          <label for="txtPlazo">Plazo en años:</label>
+          <input type="text" id="txtPlazo" placeholder="Ej: 3" />
+          <span class="error-msg" id="errPlazo"></span>
 
-                <div class="result-row">
-                    <p>Interés a pagar: <span id="spnInteresPagar">--</span></p>
-                    <p>Total préstamo: <span id="spnTotalPrestamo">--</span></p>
-                    <p>Cuota mensual: <span id="spnCuotaMensual">--</span></p>
-                </div>
-            </section>
 
-            <section class="card__section card__section--status">
-                <p class="estado-label">Estado de crédito</p>
-                <span id="spnEstadoCredito" class="badge badge--pending">ANALIZANDO...</span>
-            </section>
+          <label for="txtTasaInteres">Tasa de interés:</label>
+          <input type="text" id="txtTasaInteres" placeholder="Ej: 12" />
+          <span class="error-msg" id="errTasaInteres"></span>
 
-            <div class="buttons">
-                <button id="btnCalcularCredito" onclick="calcular()">Calcular Crédito</button>
-                <button id="btnReiniciar" onclick="reiniciar()">Reiniciar</button>
-            </div>
+
+          <div class="result-row">
+            <p>Interés a pagar: <span id="spnInteresPagar">--</span></p>
+            <p>Total préstamo: <span id="spnTotalPrestamo">--</span></p>
+            <p>Cuota mensual: <span id="spnCuotaMensual">--</span></p>
+          </div>
+        </section>
+
+        <section class="card__section card__section--status">
+          <p class="estado-label">Estado de crédito</p>
+          <span id="spnEstadoCredito" class="badge badge--pending"
+            >ANALIZANDO...</span
+          >
+        </section>
+
+        <div class="buttons">
+          <button id="btnCalcularCredito" onclick="calcular()">
+            Calcular Crédito
+          </button>
+          <button id="btnReiniciar" onclick="reiniciar()">Reiniciar</button>
         </div>
+      </div>
     </main>
 
     <footer class="bank-footer">
-        <p>© 2026 Banco Pichincha — Simulador con fines educativos. No constituye una oferta real de crédito.</p>
+      <p>
+        © 2026 Banco Pichincha — Simulador con fines educativos. No constituye
+        una oferta real de crédito.
+      </p>
     </footer>
 
     <script src="utilitarios.js"></script>
     <script src="funciones.js"></script>
     <script src="simulador.js"></script>
-</body>
+  </body>
 </html>
