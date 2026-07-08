@@ -1,70 +1,294 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    margin: 0;
-    padding: 0;
+:root {
+    --pichincha-gold: #FFC629;
+    --pichincha-gold-dark: #E6A800;
+    --pichincha-navy: #1C2A4A;
+    --pichincha-navy-light: #2B3D63;
+    --gray-bg: #F2F4F7;
+    --gray-border: #DCE1E8;
+    --text-dark: #1C2A4A;
+    --text-muted: #5C6B85;
+    --white: #FFFFFF;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background-color: var(--gray-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+}
+
+/* ===== HEADER ===== */
+.bank-header {
+    background: linear-gradient(135deg, var(--pichincha-navy) 0%, var(--pichincha-navy-light) 100%);
+    padding: 18px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.bank-header__brand {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.bank-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-logo__mark {
+    background-color: var(--pichincha-gold);
+    color: var(--pichincha-navy);
+    font-weight: 800;
+    font-size: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bank-logo__name {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.15;
+    letter-spacing: 0.5px;
+}
+
+.bank-header__tagline {
+    color: var(--pichincha-gold);
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 2px;
+}
+
+/* ===== LAYOUT ===== */
 .container {
-    width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+.card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 20px rgba(28, 42, 74, 0.08);
+    border-top: 4px solid var(--pichincha-gold);
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: left;
+    margin: 0 0 4px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--pichincha-navy);
+}
+
+.subtitle {
+    margin: 0 0 20px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.card__section {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--gray-border);
+}
+
+.card__section:first-of-type {
+    border-top: none;
+    padding-top: 0;
 }
 
 h2 {
-    margin-top: 20px;
-    font-size: 18px;
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--pichincha-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-icon {
+    background-color: var(--pichincha-navy);
+    color: var(--pichincha-gold);
+    font-size: 12px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 label {
     display: block;
-    margin-top: 10px;
-    font-weight: bold;
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-dark);
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-border);
     box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+    background-color: #FAFBFC;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-p {
-    margin-top: 10px;
+input:focus {
+    outline: none;
+    border-color: var(--pichincha-gold-dark);
+    box-shadow: 0 0 0 3px rgba(255, 198, 41, 0.25);
+    background-color: var(--white);
+}
+
+.result-row {
+    margin-top: 14px;
+    background-color: var(--gray-bg);
+    border-radius: 8px;
+    padding: 12px 14px;
+}
+
+.result-row p {
+    margin: 6px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 span {
-    font-weight: bold;
-    color: #2c3e50;
+    font-weight: 700;
+    color: var(--pichincha-navy);
 }
 
+.card__section--status {
+    text-align: center;
+    border-top: 1px solid var(--gray-border);
+}
+
+.estado-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+    background-color: var(--pichincha-navy);
+    color: var(--pichincha-gold);
+    letter-spacing: 0.5px;
+}
+
+/* ===== BUTTONS ===== */
 .buttons {
-    margin-top: 20px;
+    margin-top: 24px;
     display: flex;
-    justify-content: space-between;
+    gap: 12px;
 }
 
 button {
-    width: 48%;
-    padding: 10px;
+    flex: 1;
+    padding: 13px;
     border: none;
-    border-radius: 5px;
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.15s ease;
+    font-family: inherit;
 }
 
-button:hover {
-    background-color: #2980b9;
+button:active {
+    transform: scale(0.98);
+}
+
+#btnCalcularCredito {
+    background-color: var(--pichincha-gold);
+    color: var(--pichincha-navy);
+}
+
+#btnCalcularCredito:hover {
+    background-color: var(--pichincha-gold-dark);
+}
+
+#btnReiniciar {
+    background-color: var(--white);
+    color: var(--pichincha-navy);
+    border: 2px solid var(--gray-border);
+}
+
+#btnReiniciar:hover {
+    border-color: var(--pichincha-navy);
+}
+
+/* ===== FOOTER ===== */
+.bank-footer {
+    text-align: center;
+    padding: 20px 16px 32px;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .container {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .card {
+        padding: 22px 18px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .result-row p {
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 520px;
+    }
 }
