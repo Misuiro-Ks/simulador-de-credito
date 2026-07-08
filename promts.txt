@@ -1,0 +1,5 @@
+eres un desarrollador senior  de sistemas bancarios 
+necesito que mejores la parte visual: dale un aspecto empresarial, 
+elige un banco de ecuador al azar coloca su logo y colores en la plataforma, 
+adicional debe ser responsive,  no añadas botones innecesarios ya que no quiero 
+que altere la funcionalidad del código base como Ids y oneclicks
