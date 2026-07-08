@@ -21,3 +21,11 @@ function calcularInteresSimple(monto, tasa, plazoAños) {
 
     return interes;
 }
+
+function calcularTotalPagar(monto, interes) {
+    const IMPUESTOS_SOLCA = 100;
+
+    let total = monto + interes + IMPUESTOS_SOLCA;
+
+    return total;
+}
